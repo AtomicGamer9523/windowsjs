@@ -1,0 +1,18 @@
+{
+  "name": "windowsjs",
+  "version": "0.0.1",
+  "description": "call windows functions from js",
+  "author": "atomic__gamer",
+  "license": "MIT",
+
+
+
+
+
+  "main": "./js/index.js",
+  "types": "./js/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AtomicGamer9523/windowsjs"
+  }
+}
