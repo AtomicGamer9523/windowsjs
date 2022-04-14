@@ -1,60 +1,30 @@
 use node_bindgen::derive::node_bindgen;
-use node_bindgen::core::NjError;
 
-#[node_bindgen()]
-fn hello(count: i32) -> String {
-    format!("hello world {}", count)
+struct MyClass {
+    val: f64,
 }
+
 
 #[node_bindgen]
-fn sum(first: i32, second: i32) -> i32 {
-    first + second
-}
+impl MyClass {
 
-// throw error if first > second, otherwise return sum
-#[node_bindgen]
-fn min_max(first: i32, second: i32) -> Result<i32, NjError> {
-    if first > second {
-        Err(NjError::Other("first arg is greater".to_owned()))
-    } else {
-        Ok(first + second)
+    #[node_bindgen(constructor)]
+    fn new(val: f64) -> Self {
+        Self { val }
     }
-}
 
-#[node_bindgen(name = "multiply")]
-fn mul(first: i32, second: i32) -> i32 {
-    first * second
-}
-
-/// add second if supplied
-#[node_bindgen()]
-fn sum2(first: i32, second_arg: Option<i32>) -> i32 {
-    if let Some(second) = second_arg {
-        first + second
-    } else {
-        first
+    #[node_bindgen(name = "pl1")]
+    fn plus_one(&mut self) {
+        self.val += 1.0;
     }
-}
 
-#[node_bindgen()]
-fn string(first: String, second_arg: Option<String>) -> String {
-    if let Some(second) = second_arg {
-        format!("{} {}", first, second)
-    } else {
-        first
+    #[node_bindgen(getter, name = "v")]
+    fn v(&self) -> f64 {
+        self.val
     }
-}
 
-#[node_bindgen]
-fn give_null(null: bool) -> Option<bool> {
-    if null {
-        None
-    } else {
-        Some(null)
+    #[node_bindgen(name = "setVal")]
+    fn set_val(&mut self, newval:f64){
+        self.val = newval
     }
-}
-
-#[node_bindgen]
-fn give_str(s: &str) -> String {
-    s.to_string()
 }

@@ -1,0 +1,7 @@
+/src
+/target
+.gitignore
+*.rs
+*.lock
+*.toml
+windowsjs.code-workspace

@@ -1,2 +1,5 @@
 /target
 /Cargo.lock
+/test/_OLD.main.test.js
+
+windowsjs.code-workspace
