@@ -2,8 +2,8 @@
  * @author AtomicGamer9523
  */
 
-const winjs = require('../index');
+const winjs = require('./dist');
 
-let obj = new winjs.Window("1234", [800, 450]);
+let window = new winjs.Window("Example", [800, 450]);
 
-obj.launch()
+window.launch()
