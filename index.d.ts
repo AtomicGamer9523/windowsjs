@@ -3,48 +3,50 @@
  * @license MIT
 */
 
+type f64 = number
 
+export interface window {
+    title: string,
+    window_size: [len: f64, width:f64]
+}
+
+interface HelloState {
+    name: string,
+}
 
 /**
  * @class
  * @public
- * @exports MyClass
- * @param {number} val
+ * @exports Window
+ * @implements {window}
 */
-export class MyClass {
+export class Window implements window {
 
     /**
      * @private
-     * @type {number}
+     * @type {window["title"]}
     */
-    private val : number ;
+    title : window["title"] ;
+    
+
+    /**
+     * @private
+     * @type {window["window_size"]}
+    */
+    window_size: window["window_size"] ;
 
     /**
      * @public
      * @constructor
-     * @param {number} val 
+     * @param {window["title"]} title
+     * @param {window["window_size"]} size
     */
-    constructor ( val : number ) ;
+    constructor ( title : window["title"], size ? : window["window_size"] ) ;
 
     /**
      * @public
-     * @method pl1
+     * @method launch
      * @returns {void}
     */
-    public pl1 ( ) : void ;
-
-    /**
-     * @public
-     * @method v
-     * @returns {number}
-    */
-    public get v() : number ;
-
-    /**
-     * @public
-     * @method setVal
-     * @param {number} newval
-     * @returns {void}
-    */
-    public setVal( newval : number ) : void ;
+    public launch ( ) : void ;
 }

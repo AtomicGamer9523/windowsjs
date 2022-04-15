@@ -1,30 +1,50 @@
+use druid::{AppLauncher, Data, Lens, Widget, WindowDesc};
+use druid::widget::{Align, Flex, Label};
 use node_bindgen::derive::node_bindgen;
 
-struct MyClass {
-    val: f64,
+
+struct Window {
+    title: String,
+    window_size: (f64, f64)
+}
+
+#[derive(Clone, Data, Lens)]
+struct HelloState {
+    name: String,
 }
 
 
 #[node_bindgen]
-impl MyClass {
+impl Window {
 
     #[node_bindgen(constructor)]
-    fn new(val: f64) -> Self {
-        Self { val }
+    fn new(title: String, size: Option<(f64, f64)>) -> Self {
+        Self {
+            title: title,
+            window_size: size.unwrap_or((100.0, 100.0))
+        }
     }
 
-    #[node_bindgen(name = "pl1")]
-    fn plus_one(&mut self) {
-        self.val += 1.0;
-    }
+    #[node_bindgen(name = "launch")]
+    fn launch(&mut self){
+        let main_window = WindowDesc::new(build_widget)
+        .title(String::from(self.title.to_string()))
+        .window_size(self.window_size);
 
-    #[node_bindgen(getter, name = "v")]
-    fn v(&self) -> f64 {
-        self.val
-    }
+        let initial_state = HelloState {
+            name: "World".into(),
+        };
 
-    #[node_bindgen(name = "setVal")]
-    fn set_val(&mut self, newval:f64){
-        self.val = newval
+        AppLauncher::with_window(main_window)
+        .launch(initial_state)
+        .expect("Failed to launch application");
     }
+}
+
+
+
+fn build_widget() -> impl Widget<HelloState> {
+    let label = Label::new(String::from("Hello World"));
+    let layout = Flex::column().with_child(label);
+    Align::centered(layout)
 }

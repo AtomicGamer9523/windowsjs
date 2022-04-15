@@ -11,6 +11,10 @@ crate-type = ["cdylib"]
 [dependencies]
 node-bindgen = { version = "4.0" }
 
+[dependencies.druid]
+version = "0.6.0"
+features = ["im", "svg", "image"]
+
 
 [build-dependencies]
 node-bindgen = { version = "4.0", features = ["build"] }
