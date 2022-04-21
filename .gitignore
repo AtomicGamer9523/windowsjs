@@ -1,6 +1,6 @@
 /target
 /dist
-/Cargo.lock
-_OLD.main.test.js
+Cargo.lock
+main.test.js
 
 windowsjs.code-workspace

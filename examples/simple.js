@@ -1,8 +1,6 @@
-/**
- * @author AtomicGamer9523
- */
+//? Free to use ;)
 
-const winjs = require('./dist');
+const winjs = require('../src/index');// use 'windowsjs' instead
 
 let window = new winjs.Window("Example", [800, 450]);
 

@@ -1,7 +1,10 @@
-/src
-/target
-.gitignore
+**/target
+**/examples
+src/lib.rs
 *.rs
 *.lock
 *.toml
+
+main.test.js
+
 windowsjs.code-workspace
