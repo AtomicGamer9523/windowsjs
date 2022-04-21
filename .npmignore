@@ -4,6 +4,7 @@ src/lib.rs
 *.rs
 *.lock
 *.toml
+/.git
 
 main.test.js
 
