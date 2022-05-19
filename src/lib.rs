@@ -1,6 +1,5 @@
 #[allow(unused_imports)]
 #[allow(non_snake_case)]
-// #[allow(dead_code)]
 use druid::{AppLauncher, Data, Lens, Widget, WindowDesc, *};
 use druid::widget::{Align, Flex, Label};
 use node_bindgen::derive::node_bindgen;
@@ -28,26 +27,27 @@ fn build_widget() -> impl Widget<MainState> {
 impl Window {
 
     #[node_bindgen(constructor)]
-    fn new(title: String, size: Option<(f64, f64)>) -> Self {
+    pub fn new(&self, title: String, size: Option<(f64, f64)>) -> Self {
         Self {
             title: title,
             window_size: size.unwrap_or((100.0, 100.0)),
         }
     }
 
-    #[node_bindgen(name = "launch")]
-    fn node_launch(&mut self){
-        // let main_window = WindowDesc::new(build_widget)
-        // .title(String::from(self.title.to_string()))
-        // .window_size(self.window_size);
+    #[node_bindgen(setter, name = "setContent")]
+    fn node_setcontent(&self, text: String) -> impl Widget<MainState> {
+        let label = Label::new(text);
+        let layout = Flex::column().with_child(label);
+        Align::centered(layout)
+    }
 
+    #[node_bindgen(name = "launch")]
+    fn node_launch(&mut self, content: impl Widget<MainState> ) {
         let initial_state = MainState {
-            name: "World".into(),
+            name: "main",
         };
 
-        // let mywin = druid::Window::new(id: WindowId, handle: WindowHandle, desc: WindowDesc<T>);
-
-        let frame = druid::WindowDesc::new(build_widget)
+        let frame = druid::WindowDesc::new(content)
         .title(String::from(self.title.to_string()))
         .window_size(self.window_size);
 
