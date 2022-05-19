@@ -16,9 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install ndoe_bindgen
+    - name: Install node_bindgen
       run: cargo install nj-cli
     - name: Build
-      run: nj-cli build --verbose --release
+      run: nj-cli build --release
     - name: Run tests
       run: node ./examples/simple.js

@@ -57,8 +57,33 @@ export class Window implements window {
 
     /**
      * @public
+     * @method setContent
+     * @param
+     * @returns {Widget<MainState>}
+    */
+    public setContent( text : string ) : Widget < MainState > ;
+    
+
+    /**
+     * @public
      * @method launch
      * @returns {void}
     */
-    public launch ( ) : void ;
+    public launch ( content: Widget<MainState> ) : void ;
+}
+
+
+
+
+
+
+
+
+
+class Widget<State> {
+    private st: State;
+}
+
+class MainState {
+    fdata: string
 }
