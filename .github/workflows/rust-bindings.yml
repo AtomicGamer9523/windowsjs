@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Install ndoe_bindgen
+      run: cargo install nj-cli
     - name: Build
       run: nj-cli build --verbose --release
     - name: Run tests
