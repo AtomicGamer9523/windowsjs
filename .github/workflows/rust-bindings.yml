@@ -17,8 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Install node_bindgen
-      run: cargo install nj-cli
+      run: cargo install nj-cli pango
     - name: Build
-      run: nj-cli build --release
+      run: nj-cli build
     - name: Run tests
       run: node ./examples/simple.js
